@@ -1,0 +1,57 @@
+select-task-modal {
+  ion-header {
+    background-color: #dddddd;
+    ion-title {
+      padding: 15px 0;
+      display: inline-flex !important;
+    }
+    ion-icon {
+      margin-top: 13px;
+      font-size: 26px;
+    }
+  }
+  .start-task-icon {
+    padding-top: 13px;
+    font-size: 30px;
+  }
+
+  ion-item {
+    padding-left: 30px !important;
+  }
+
+  ion-fab {
+    bottom: 10px;
+    right: 10px;
+    color: #000;
+    button {
+      background-color: #32db64 !important;
+    }
+  }
+
+  .card-title-md {
+    font-size: 17px !important;
+    font-weight: 700;
+    color: #505154;
+  }
+
+  .card-md {
+    margin: 0;
+    width: 100%;
+  }
+  .list-md {
+    margin: 0;
+  }
+  .list-header-md {
+    background-color: #eeeeee;
+    margin-bottom: 0;
+    font-weight: 700;
+    padding-left: 20px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+    -moz-box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+  }
+  .start-task-icon {
+    padding-top: 5px;
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,35 @@
+@import "../pages/login/login.component";
+@import "../pages/registration/registration.component";
+@import "../pages/profile/profile";
+
+.checkbox-md-primary .checkbox-checked {
+  background-color: rgb(255, 255, 255);
+  border-color: $active_bg_color;
+  .checkbox-inner {
+    border-color: $header_bg_color !important;
+  }
+}
+
+.segment-button {
+  color: #959393 !important;
+  border-color: #c5c5c5 !important;
+}
+
+.segment-activated {
+  color: #000000 !important;
+}
+.success {
+  .toast-wrapper {
+    opacity: 0.9;;
+  }
+  > div {
+    background-color: #32db64 !important;
+
+  }
+}
+
+.error {
+  > div {
+    background-color: red !important;
+  }
+}

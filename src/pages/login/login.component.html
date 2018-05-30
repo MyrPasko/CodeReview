@@ -1,0 +1,39 @@
+<ion-content padding>
+  <ion-row align-items-center>
+    <ion-col col-sm-9>
+      <h5 text-center text-capitalize>Grass Business Labs</h5>
+      <form [formGroup]="loginForm">
+      <ion-item justify-content-center ngClass="{{loginForm.controls.email.errors && loginForm.controls.email.touched ? 'invalid' : ''}}">
+        <ion-input
+          placeholder="Email"
+          formControlName="email"></ion-input>
+      </ion-item>
+      <div class="alert-msg">
+        <p  no-margin *ngIf="loginForm.controls.email.errors && loginForm.controls.email.touched"> Enter a valid email address</p>
+      </div>
+
+
+
+      <ion-item justify-content-center  ngClass="{{loginForm.controls.password.errors && loginForm.controls.password.touched ? 'invalid' : ''}}">
+        <ion-input
+          [type]="isActive ? 'password' : 'text'"
+          placeholder="Password"
+          formControlName="password"></ion-input>
+        <ion-icon
+          class="pass-icon"
+          [name]="isActive ? 'eye-off': 'eye' "
+          item-right
+          (click)="showPass()">
+        </ion-icon>
+      </ion-item>
+      </form>
+      <div class="alert-msg">
+        <p  no-margin *ngIf="loginForm.controls.password.errors && loginForm.controls.password.touched"> Enter a valid password</p>
+      </div>
+      <button ion-button
+              (click)="login()">LOG IN
+      </button>
+      </ion-col>
+  </ion-row>
+</ion-content>
+

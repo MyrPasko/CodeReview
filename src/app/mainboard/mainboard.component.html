@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-row>
+    <ion-col col-2 text-center>
+      <ion-icon name="menu" menuToggle></ion-icon>
+    </ion-col>
+
+    <ion-col col-8 text-center>
+      <ion-title text-center>Recent Tasks</ion-title>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content padding-vertical>
+  <div *ngFor="let day of history">
+    <ion-list-header>
+      {{day.date}}
+      <span *ngIf="day.totalTime" item-end>Total: {{day.totalTime | minuteSeconds}}</span>
+    </ion-list-header>
+    <ion-list no-lines *ngIf="day.tasks.length>0">
+
+      <ion-card
+        *ngFor="let task of day.tasks | orderBy: 'id' : true ">
+
+        <ion-card-header no-padding>
+          <ion-item>
+            <ion-grid (click)="taskDetails(task)">
+              <ion-row align-items-center>
+                <ion-col col-8 class="task-name" no-padding>{{task.task_name }}</ion-col>
+                <ion-col col-8 class="task-status" no-padding>{{task.project_name}}</ion-col>
+                <ion-col col-8 class="task-status" no-padding>{{task.status}}</ion-col>
+                <ion-col col-4 no-padding align-self-center text-end><span *ngIf="task.current_day_time >= 0">
+              {{task.current_day_time | minuteSeconds}}</span></ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-icon name="play"
+                      item-end color="primary"
+                      *ngIf="task.finish_time && day.currentDay === 1"
+                      (click)="startTimer(task)"></ion-icon>
+            <ion-icon name="square"
+                      item-end color="danger"
+                      *ngIf="!task.finish_time && day.currentDay === 1"
+                      (click)="stopTimer(task)"></ion-icon>
+            <ion-icon name="play"
+                      item-end color="disable"
+                      *ngIf="task.finish_time && day.currentDay === 0"></ion-icon>
+          </ion-item>
+        </ion-card-header>
+
+        <!--<ion-card-content *ngIf="task.showDesc">-->
+          <!--{{task.description}}-->
+        <!--</ion-card-content>-->
+
+      </ion-card>
+
+    </ion-list>
+  </div>
+
+  <ion-fab>
+    <button ion-fab
+            ngClass="play"
+            (click)="selectProject()">
+      <ion-icon name="play" no-padding></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>
+
+

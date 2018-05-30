@@ -1,0 +1,137 @@
+page-mainboard {
+  ion-fab {
+    right: 10px;
+    bottom: 10px;
+  }
+  .play {
+    background-color: #32db64;
+  }
+  .stop {
+    background-color: #FF0000;
+  }
+  //
+  ion-header {
+    background-color: #dddddd;
+    ion-icon {
+      margin-top: 4px;
+      padding-top: 14px;
+      font-size: 25px;
+    }
+    ion-select {
+      display: inline-flex !important;
+      .select-text {
+        display: none;
+      }
+      .select-icon-inner {
+        margin-top: 1px !important;
+      }
+    }
+    ion-title {
+      padding: 15px 0;
+      width: 88%;
+      display: inline-flex !important;
+      color: #000000;
+    }
+
+  }
+
+  ion-icon {
+      padding-top: 32px;
+      font-size: 20px!important;
+  }
+
+  ion-item {
+    height: 60px;
+  }
+
+  .scroll-content {
+    padding-top: 0 !important;
+    padding-bottom: 50px !important;             // можно убрать, но тогда кнопка мешает удидеть детали последнего таска в списке.
+  }
+
+  .task-status{
+    font-size: 12px !important;
+  }
+  .task-name {
+    font-weight: 700;
+    color: #505154;
+  }
+
+  ion-card {
+    padding: 15px 0;
+    ion-card-content {
+      max-height: 70px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .card-md {
+    margin: 0;
+    width: 100%;
+  }
+  .list-md {
+    margin: 0;
+  }
+  .list-header-md {
+    background-color: #eeeeee;
+    margin-bottom: 0;
+    font-weight: 700;
+    padding: 0 10px 0 20px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+    -moz-box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+  }
+
+  //}
+
+  //.toolbar-background-ios, .toolbar-background {
+  //  background-color: $header_bg_color;
+  //}
+  //.bar-buttons-ios[end] {
+  //  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default {
+  //    color: $toolbar-ios-title-text-color;
+  //  }
+  //}
+  //.toolbar-title-md {
+  //  color: $toolbar-ios-title-text-color;
+  //}
+  //.button-clear-ios, .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+  //  color: rgb(255, 255, 255);
+  //}
+  //
+  //ion-segment {
+  //  margin: 0 auto;
+  //  width: 50%;
+  //}
+  //
+  //ion-content {
+  //  input[disabled] {
+  //    color: #000 !important;
+  //    background: none !important;
+  //    opacity: 1 !important;
+  //  }
+  //  .checkbox-ios.checkbox-disabled, .item-ios.item-checkbox-disabled ion-label {
+  //    pointer-events: none;
+  //    color: #000 !important;
+  //    background: none !important;
+  //    opacity: 1 !important;
+  //  }
+  //}
+  //.content {
+  //  background-color: rgb(250, 250, 250);
+  //
+  //}
+  //
+  //[icon-only] ion-icon {
+  //  padding: 0 0.5em;
+  //  font-size: 1.5em !important;
+  //  line-height: .67;
+  //  pointer-events: none;
+  //}
+  //.fab-md {
+  //  background-color: $header_bg_color;
+  //}
+  //
+
+}
+

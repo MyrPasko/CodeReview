@@ -1,0 +1,15 @@
+{
+  "name": "hiremanApp",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://api.code-review.grassbusinesslabs.tk/api",
+      "rejectUnauthorized": false
+    }
+  ]
+}

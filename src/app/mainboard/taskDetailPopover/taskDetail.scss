@@ -1,0 +1,22 @@
+detail-task-modal {
+  ion-header {
+    background-color: #dddddd;
+    ion-title {
+      padding: 15px 0;
+      display: inline-flex !important;
+    }
+    ion-icon {
+      margin-top: 13px;
+      font-size: 26px;
+    }
+  }
+  .comments-button {
+    border: none;
+    background-color: #eaeaea;
+  }
+  span {
+    font-weight: 700;
+    color: #505154;
+  }
+
+}

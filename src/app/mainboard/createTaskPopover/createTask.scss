@@ -1,0 +1,23 @@
+create-task-modal {
+  ion-header {
+    background-color: #dddddd;
+    ion-title {
+      padding: 15px 0;
+      display: inline-flex !important;
+    }
+    ion-icon {
+      margin-top: 13px;
+      font-size: 26px;
+    }
+  }
+.item-inner {
+  padding: 0!important;
+}
+  button {
+    border: 1px solid !important;
+  }
+
+  ion-input::placeholder {
+    color: black !important;
+  }
+}

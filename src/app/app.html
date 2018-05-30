@@ -1,0 +1,22 @@
+<!--<ion-nav [root]="rootPage"></ion-nav>-->
+<ion-menu [content]="content"
+          [enabled]="enabled">
+
+  <!--<ion-toolbar>-->
+    <!--<ion-title>Pages</ion-title>-->
+  <!--</ion-toolbar>-->
+
+  <ion-content>
+    <ion-grid style="height: 100%">
+      <ion-row  align-items-center style="height: 100%">
+        <button  ion-item menuClose (click)="logout()" text-center no-lines>
+          logout
+        </button>
+      </ion-row>
+
+    </ion-grid>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

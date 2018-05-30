@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col col-8 text-center>
+      <ion-title text-center>Task details</ion-title>
+    </ion-col>
+    <ion-col col-2 text-center>
+      <ion-icon
+        ios="md-close"
+        md="md-close"
+        item-end (click)="cancel()"
+      ></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-col>
+      <ion-row padding-vertical="5px"><span>Task name: {{task.task_name}}</span></ion-row>
+      <ion-row padding-vertical="5px"><span>Total time: {{task.summ_time | timeString}}</span></ion-row>
+      <ion-row padding-vertical="5px">
+        <span>Description:</span>
+        <p>{{task.description}}</p>
+      </ion-row>
+      <ion-row><button ion-item text-center class="comments-button" (click)="openTrello()"><span>Comments</span></button></ion-row>
+    </ion-col>
+  </ion-grid>
+  <!--<span>{{task.task_name}}</span>-->
+  <!--<span>{{task.summ_time | timeString}}</span>-->
+
+
+</ion-content>
+
+

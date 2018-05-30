@@ -1,0 +1,33 @@
+<ion-content padding>
+  <ion-row align-items-center>
+    <ion-col col-sm-9>
+
+      <ion-item justify-content-center>
+        <ion-input
+          placeholder="Tel"
+          [(ngModel)]="user.phone"></ion-input>
+      </ion-item>
+
+      <ion-item justify-content-center>
+        <ion-input
+          [type]="isActive ? 'password' : 'text'"
+          placeholder="ПАРОЛЬ"
+          [(ngModel)]="user.password"></ion-input>
+        <ion-icon
+          class="pass-icon"
+          [name]="isActive ? 'eye-off': 'eye' "
+          item-right
+          (click)="showPass()">
+        </ion-icon>
+      </ion-item>
+
+            <div text-center>
+                <a margin-vertical>вже є акаунт?</a>
+                <span><a color="primary" (click)="goToLogin()">увійти!</a></span>
+            </div>
+        </ion-col>
+    </ion-row>
+
+</ion-content>
+
+

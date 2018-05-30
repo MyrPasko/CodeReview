@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-row>
+    <ion-col col-2 text-center></ion-col>
+    <ion-col col-8 text-center>
+      <ion-title text-center>{{project.name}}</ion-title>
+    </ion-col>
+    <ion-col col-2 text-center>
+      <ion-icon
+        ios="md-close"
+        md="md-close"
+        item-end (click)="cancel()"
+      ></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <!--todo если последний выбраный таск был из листа тодо то этот лист должен быть первый-->
+  <div *ngFor="let list of projectLists">
+    <ion-list-header (click)="list.show = !list.show">{{list.name}}</ion-list-header>
+    <ion-list no-lines *ngIf="list.show">
+
+      <ion-card *ngFor="let card of list.tasks">
+        <ion-card-content>
+          <ion-row>
+            <ion-col col-10>
+              <ion-card-title class="task-name">
+                {{card.name}}
+              </ion-card-title>
+              <p>
+                {{card.desc}}
+              </p></ion-col>
+            <ion-col col-2 text-center>
+              <ion-icon
+                class="start-task-icon"
+                name="play"
+                item-end color="primary"
+                (click)="startTask(list,card)"
+              ></ion-icon>
+            </ion-col>
+          </ion-row>
+
+        </ion-card-content>
+        <!--<ion-row padding-horizontal><button ion-button outline> start working</button></ion-row>-->
+      </ion-card>
+
+      <ion-item *ngIf="list.tasks.length === 0">
+        <ion-label>No cards</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab>
+    <button ion-fab (click)="newTask()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+
+  </ion-fab>
+</ion-content>
+
+

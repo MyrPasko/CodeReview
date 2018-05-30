@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col col-8 text-center>
+      <ion-title text-center>Create a new task</ion-title>
+    </ion-col>
+    <ion-col col-2 text-center>
+      <ion-icon
+        ios="md-close"
+        md="md-close"
+        item-end (click)="cancel()"
+      ></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <!--todo finish this-->
+  <ion-list padding>
+    <ion-item no-padding>
+      <ion-label color="primary" stacked>Name</ion-label>
+      <ion-input [(ngModel)]="taskCreation.task_name"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="primary" stacked>Description</ion-label>
+      <ion-input [(ngModel)]="taskCreation.description"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="primary" stacked>Time for work (hours)</ion-label>
+      <ion-input type="tel" [(ngModel)]="time_for_work"></ion-input>
+    </ion-item>
+    <button ion-item no-padding margin-vertical text-uppercase text-center (click)="createTask()">
+      create
+    </button>
+  </ion-list>
+
+</ion-content>
+
+
