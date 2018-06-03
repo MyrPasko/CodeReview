@@ -19,7 +19,6 @@ import {RegistrationComponent} from "../pages/registration/registration.componen
 import {DataProvider} from "./shared/services/data.provider";
 import {CommunicationProvider} from "./shared/services/communication ";
 import {KeysPipe} from "../pipes/keys/keys";
-import {MinuteSecondsPipe} from "../pipes/minute-seconds/minute-seconds";
 import {UtilityService} from "./shared/services/utility.service";
 
 @NgModule({

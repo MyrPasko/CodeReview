@@ -9,19 +9,24 @@ import {MainboardComponent} from "./mainboard/mainboard.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {MenuController} from 'ionic-angular';
 import {CommunicationProvider} from "./shared/services/communication ";
+import {AuthService} from "./shared/services/auth.service";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp implements OnInit {
-  rootPage: any;
   @ViewChild(Nav) nav: Nav;
-  pages: Array<{ title: string, component: any }>
+  pages: Array<{ title: string, component: any }>;
+  rootPage: any;
   enabled = true;
+  private userInfo = {};
 
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public menuCtrl: MenuController,
-              public comm: CommunicationProvider,) {
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              public menuCtrl: MenuController,
+              public comm: CommunicationProvider,
+              public auth: AuthService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -35,6 +40,7 @@ export class MyApp implements OnInit {
 
   logout() {
     console.log('123')
+    console.log(this.userInfo);
     this.nav.setRoot(LoginComponent);
     this.enabled = false;
     localStorage.isLogged = false;
@@ -42,8 +48,9 @@ export class MyApp implements OnInit {
   }
 
   ngOnInit() {
-    console.warn('dallin@example.net', 'secret');
-    if ( typeof localStorage.isLogged === 'undefined' ||localStorage.isLogged === "false" ) {
+    this.getInfo(localStorage.userId);
+    console.log('App component is working');
+    if (typeof localStorage.isLogged === 'undefined' || localStorage.isLogged === "false") {
       this.rootPage = LoginComponent;
     } else {
       this.rootPage = MainboardComponent;
@@ -52,8 +59,13 @@ export class MyApp implements OnInit {
       this.enabled = (val === 'enable');
       if (val === 'logout') this.logout();
     })
+  }
 
-
+  getInfo(id) {
+    this.auth.getUserInfo(id).subscribe((userData) => {
+      this.userInfo = userData;
+      console.log(this.userInfo);
+    });
   }
 
 

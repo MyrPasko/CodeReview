@@ -3,16 +3,33 @@
           [enabled]="enabled">
 
   <!--<ion-toolbar>-->
-    <!--<ion-title>Pages</ion-title>-->
+  <!--<ion-title>Pages</ion-title>-->
   <!--</ion-toolbar>-->
 
-  <ion-content>
+  <ion-content class="sliding-menu">
     <ion-grid style="height: 100%">
-      <ion-row  align-items-center style="height: 100%">
-        <button  ion-item menuClose (click)="logout()" text-center no-lines>
-          logout
-        </button>
+      <ion-row padding col-3></ion-row>
+
+      <ion-row padding>
+        <ion-col >
+          <ion-row>
+            <ion-col text-center><img class="avatar" src="{{userInfo.trello_avatar}}" alt="Avatar"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="big" text-center>{{userInfo.trello_username}}</ion-col>
+            </ion-row>
+          <ion-row>
+            <ion-col class="big" text-center>{{userInfo.email}}</ion-col>
+          </ion-row>
+          <!--<ion-row padding-vertical>{{userInfo.direction}}</ion-row>-->
+          <!--<ion-row padding-vertical>{{userInfo.used_tools}}</ion-row>-->
+          <!--<ion-row  align-items-center style="height: 100%">-->
+        </ion-col>
       </ion-row>
+      <button class="bold log-button" ion-item menuClose (click)="logout()" text-center no-lines>
+        LOGOUT
+      </button>
+      <!--</ion-row>-->
 
     </ion-grid>
   </ion-content>

@@ -4,7 +4,8 @@ const api = 'http://api.code-review.grassbusinesslabs.tk/api/';
 export const COMMON_URL = {
   auth: {
     login: api + 'login',
-    logout: api + 'user/logout'
+    logout: api + 'user/logout',
+    userInfo: api + 'users'
   },
   user: {
     startWorking: api + 'projects/',

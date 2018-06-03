@@ -111,6 +111,7 @@ export class MainboardComponent implements OnInit {
   selectProject() {                                       // срабатывает на зеленой кнопке внизу.
     let alert = this.alertCtrl.create();
     alert.setTitle('Select project');
+    console.log(this.projects);
     this.projects.forEach((item, index) => {
       alert.addInput({
         type: 'radio',
@@ -130,13 +131,20 @@ export class MainboardComponent implements OnInit {
   }
 
   startTimer(task) {
-
     console.log('Start timer');
+
+    let currentDayTasks = this.history[0].tasks;
+    let index = currentDayTasks.indexOf(task);
+    let taskForCut = currentDayTasks.splice(index, 1);
+
+    currentDayTasks.unshift(taskForCut[0]);
+
     this.history.forEach(item => {
       item.tasks.forEach(task => {
         task.finish_time = 1;
       })
     });
+
     this.user.startTask({
       task_name: task.task_name,
       trello_task_id: task.trello_task_id,
@@ -147,7 +155,6 @@ export class MainboardComponent implements OnInit {
       task.finish_time = null;
       task.status = 'DOING';
       console.log('Result:', res);
-      console.log(res);
       this.currentTaskId = res.id;
       this.runTimer(task)
     })
@@ -156,8 +163,7 @@ export class MainboardComponent implements OnInit {
 
   runTimer(task) {
     clearInterval(this.timerFnc);
-    this.timerFnc = setInterval(x => {
-      // console.log(task.real_work_time);
+    this.timerFnc = setInterval(() => {
       task.current_day_time++;
       task.summ_time++;
     }, 1000);
@@ -171,7 +177,6 @@ export class MainboardComponent implements OnInit {
 
       let alert = this.alertCtrl.create();
       alert.setTitle('Move task to:');
-
 
       data.forEach((item) => {
         alert.addInput({

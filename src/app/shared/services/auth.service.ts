@@ -12,14 +12,12 @@ import {UserService} from "./user.service";
 import {CommunicationProvider} from "./communication ";
 
 
-
 @Injectable()
 export class AuthService {
 
   constructor(private request: RequestService,
               private toastCtrl: ToastController,
-              private comm: CommunicationProvider,
-             ) {
+              private comm: CommunicationProvider,) {
   }
 
   login(credentials: loginCredentials): Observable<any> {
@@ -41,5 +39,34 @@ export class AuthService {
     return this.request.get(COMMON_URL.auth.logout);
   }
 
+  getUserInfo(id) {
+    return this.request.get(`${COMMON_URL.auth.userInfo}/${id}`)
+      .pipe(
+        tap(
+          (data) => {
+            console.log('The data of me:', data)
+          },
+          (error) => {
+            console.warn('It is a bed mistake', error);
+          }
+        )
+      )
+  }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

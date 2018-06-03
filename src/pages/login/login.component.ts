@@ -9,7 +9,6 @@ import {UserService} from "../../app/shared/services/user.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {FormBuilder, Validators} from "@angular/forms";
 
-
 export declare interface loginCredentials {
   email: string,
   password: string
@@ -18,6 +17,7 @@ export declare interface loginCredentials {
 @Component({
   selector: 'page-login',
   templateUrl: './login.component.html',
+  providers: [AuthService]
 })
 
 export class LoginComponent {
@@ -58,12 +58,19 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe(
-        success => {
-          console.log('Logining success', success);
-          localStorage.token = success['data']['api_token'];
-          // this.openBrowser(success['data']['trello_token']);
-          this.openBrowser(success['data']['api_token']);
+        result => {
+          const res = result.data;
+          const apiToken = res.api_token;
+          const trelloId = res.trello_id;
+
+          if (trelloId === null) {
+            this.openBrowser(apiToken);
+          }
+
+          console.log('Logining success', result);
+          localStorage.token = apiToken;
           localStorage.isLogged = true;
+          localStorage.userId = res.id;
           this.comm.menuControll('enable');
           this.navCtrl.setRoot(MainboardComponent);
         },

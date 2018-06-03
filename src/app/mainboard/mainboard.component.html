@@ -15,12 +15,13 @@
   <div *ngFor="let day of history">
     <ion-list-header>
       {{day.date}}
-      <span *ngIf="day.totalTime" item-end>Total: {{day.totalTime | minuteSeconds}}</span>
+      <span *ngIf="day.totalTime" item-end>Total: {{day.totalTime | timeString}}</span>
     </ion-list-header>
     <ion-list no-lines *ngIf="day.tasks.length>0">
 
       <ion-card
-        *ngFor="let task of day.tasks | orderBy: 'id' : true ">
+        *ngFor="let task of day.tasks">
+        <!--*ngFor="let task of day.tasks | orderBy: 'id' : true ">-->
 
         <ion-card-header no-padding>
           <ion-item>

@@ -1,6 +1,6 @@
 select-task-modal {
   ion-header {
-    background-color: #dddddd;
+    background-color: #ffffff;
     ion-title {
       padding: 15px 0;
       display: inline-flex !important;
@@ -42,13 +42,11 @@ select-task-modal {
     margin: 0;
   }
   .list-header-md {
-    background-color: #eeeeee;
+    background-color: #ffffff;
     margin-bottom: 0;
     font-weight: 700;
     padding-left: 20px;
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.15);
-    -moz-box-shadow: inset 0 0 10px rgba(0,0,0,.15);
-    box-shadow: inset 0 0 10px rgba(0,0,0,.15);
+    box-shadow: inset 0 0 15px rgba(0,0,0,.15);
   }
   .start-task-icon {
     padding-top: 5px;

@@ -19,9 +19,11 @@
     <ion-col>
       <ion-row padding-vertical="5px"><span>Task name: {{task.task_name}}</span></ion-row>
       <ion-row padding-vertical="5px"><span>Total time: {{task.summ_time | timeString}}</span></ion-row>
-      <ion-row padding-vertical="5px">
+      <ion-row padding-top="5px">
         <span>Description:</span>
-        <p>{{task.description}}</p>
+      </ion-row>
+      <ion-row padding-bottom="10px">
+        {{task.description}}
       </ion-row>
       <ion-row><button ion-item text-center class="comments-button" (click)="openTrello()"><span>Comments</span></button></ion-row>
     </ion-col>

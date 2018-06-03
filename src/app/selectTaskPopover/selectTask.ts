@@ -74,8 +74,8 @@ export class SelectTaskModal implements OnInit {
       trello_link: task.shortUrl,
       listName: this.projectLists.find(item => item.name === 'DOING').name,
       listId: this.projectLists.find(item => item.name === 'DOING').trello_id
-    }
-    console.log(cred, 'asdsadasd')
+    };
+    console.log(cred, 'asdsadasd');
     this.user.startTask(cred, this.project.id).subscribe((data) => {
       this.viewCtrl.dismiss({item: data});
       console.log('Just started task',data);
