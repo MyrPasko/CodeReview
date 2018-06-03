@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {DataProvider} from "../shared/services/data.provider";
 import {AlertController} from 'ionic-angular';
+import {LoadingController} from "ionic-angular";
 import {ModalController, ViewController} from 'ionic-angular';
 import {SelectTaskModal} from "../selectTaskPopover/selectTask";
 import {UserService} from "../shared/services/user.service";
@@ -23,7 +24,8 @@ export class MainboardComponent implements OnInit {
               public dataProvider: DataProvider,
               public user: UserService,
               public modalCtrl: ModalController,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              public loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {
@@ -81,20 +83,26 @@ export class MainboardComponent implements OnInit {
     let modal = this.modalCtrl.create(SelectTaskModal, {item: object});
     modal.onDidDismiss(data => {
       if (data && data.item) {
+        const currentDayTasks = this.history[0].tasks;
+
         console.log(data);
         data.item.real_work_time = 1;
         data.item.finish_time = null;
 
         this.currentTaskId = data.item.id;
         console.log('Current Task ID from showModal:', this.currentTaskId);
-        if (this.history.length > 0 && this.history[0].tasks.length > 0) {
-          this.history[0].tasks[0].finish_time = 1;
+        if (this.history.length > 0 && currentDayTasks.length > 0) {
+          currentDayTasks[0].finish_time = 1;
         }
-        // let tmpTask = this.history.find(item=> item.tasks[0].finish_time === null);
-        // if(tmpTask.tasks[0].finish_time) tmpTask.tasks[0].finish_time = 1;
-        if (this.history.find(item => item.date === this.getDate())) {
+        // удаление дублей запущеного таска из списка
+        currentDayTasks.forEach((task) => {
+          if (task.task_name === data.item.task_name) {
+            this.deletingTask(currentDayTasks, task)
+          }
+        });
 
-          this.history[0].tasks.unshift(data.item);
+        if (this.history.find(item => item.date === this.getDate())) {
+          currentDayTasks.unshift(data.item);
           console.log('Are you mother fuckers readY???');
         } else {
           this.history.unshift({
@@ -134,15 +142,11 @@ export class MainboardComponent implements OnInit {
     console.log('Start timer');
 
     let currentDayTasks = this.history[0].tasks;
-    let index = currentDayTasks.indexOf(task);
-    let taskForCut = currentDayTasks.splice(index, 1);
 
-    currentDayTasks.unshift(taskForCut[0]);
+    currentDayTasks.unshift(this.deletingTask(currentDayTasks, task));
 
-    this.history.forEach(item => {
-      item.tasks.forEach(task => {
-        task.finish_time = 1;
-      })
+    currentDayTasks.forEach((foundedTask) => {
+      foundedTask.finish_time = 1;
     });
 
     this.user.startTask({
@@ -161,6 +165,11 @@ export class MainboardComponent implements OnInit {
 
   }
 
+  deletingTask(array, task) {
+    let index = array.indexOf(task);
+    return array.splice(index, 1)[0];
+  }
+
   runTimer(task) {
     clearInterval(this.timerFnc);
     this.timerFnc = setInterval(() => {
@@ -171,9 +180,15 @@ export class MainboardComponent implements OnInit {
 
   stopTimer(task) {
     console.log('Stop Timer');
+    let loader = this.loadingCtrl.create({
+      spinner: 'bubbles'
+    });
+
+    loader.present();
+
     this.dataProvider.getTrelloTasks(task.project_id).subscribe((data: any[]) => {   // получаем перечень папок в трелло проекта
 
-      // console.log('My trello tasks:', data);
+      loader.dismiss();
 
       let alert = this.alertCtrl.create();
       alert.setTitle('Move task to:');
@@ -183,7 +198,7 @@ export class MainboardComponent implements OnInit {
           type: 'radio',
           label: item.name,
           value: item,
-          checked: item.name === 'Testing'
+          checked: (item.name === 'TESTING' || item.name === 'Testing')
         });
       });
       alert.addButton('Cancel');

@@ -4,6 +4,7 @@ import {DataProvider} from "../shared/services/data.provider";
 import {UserService} from "../shared/services/user.service";
 import {CommunicationProvider} from "../shared/services/communication ";
 import {CreateTaskModal} from "../mainboard/createTaskPopover/createTask";
+import {LoadingController} from "ionic-angular";
 
 /**
  * Generated class for the AddSkillModalsPage page.
@@ -21,14 +22,6 @@ export class SelectTaskModal implements OnInit {
   project: any;
   projectLists: any;
 
-  ngOnInit() {
-    this.project = this.navParams.get('item');
-    this.data.getTrelloTasks(this.project.id).subscribe((data) => {
-      console.log('tasks', data);
-      console.log('project', this.project);
-      this.projectLists = data;
-    })
-  }
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,14 +29,25 @@ export class SelectTaskModal implements OnInit {
               public comm: CommunicationProvider,
               public user: UserService,
               public modalCtrl: ModalController,
-              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
               public viewCtrl: ViewController) {
-
     // this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
-
-
   }
 
+  ngOnInit() {
+    let loader = this.loadingCtrl.create({
+      spinner: 'bubbles'
+    });
+
+    loader.present();
+    this.project = this.navParams.get('item');
+    this.data.getTrelloTasks(this.project.id).subscribe((data) => {
+      loader.dismiss();
+      console.log('tasks', data);
+      console.log('project', this.project);
+      this.projectLists = data;
+    })
+  }
 
   cancel() {
     this.viewCtrl.dismiss()
